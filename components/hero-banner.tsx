@@ -14,7 +14,11 @@ import {
 
 import Globe from "@/app/images/globe.png"
 
-const TRENDING_POSITIONS = ["Product Designer", "AI Engineering", "Dev-ops Engineer"]
+const TRENDING_POSITIONS = [
+  "Product Designer",
+  "AI Engineering",
+  "Dev-ops Engineer",
+]
 
 const STATS = [
   { icon: ShoppingBag01Icon, value: "50K", label: "Active Jobs" },
@@ -52,7 +56,10 @@ export function HeroBanner() {
   return (
     <section className="relative overflow-hidden bg-[#0b0b0e] pt-10 sm:pt-14">
       {/* starfield covering the whole hero */}
-      <div aria-hidden className="hero-stars pointer-events-none absolute inset-0" />
+      <div
+        aria-hidden
+        className="hero-stars pointer-events-none absolute inset-0"
+      />
 
       <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-4 text-center">
         <HeroBadge />
@@ -78,7 +85,7 @@ export function HeroBanner() {
             <input
               type="text"
               placeholder="Job title, skill or company"
-              className="h-9 w-full min-w-0 bg-transparent text-sm text-white placeholder:text-white/45 outline-none"
+              className="h-9 w-full min-w-0 bg-transparent text-sm text-white outline-none placeholder:text-white/45"
             />
           </label>
           <span
@@ -93,7 +100,7 @@ export function HeroBanner() {
             <input
               type="text"
               placeholder="Location or Remote"
-              className="h-9 w-full min-w-0 bg-transparent text-sm text-white placeholder:text-white/45 outline-none"
+              className="h-9 w-full min-w-0 bg-transparent text-sm text-white outline-none placeholder:text-white/45"
             />
           </label>
           <button
@@ -128,7 +135,7 @@ export function HeroBanner() {
           aria-hidden
           className="absolute bottom-[-260px] left-1/2 w-[680px] max-w-none -translate-x-1/2 sm:bottom-[-410px] sm:w-[1000px] md:bottom-[-522px] md:w-[1200px] lg:bottom-[-642px] lg:w-[1440px]"
         />
-        <p className="pointer-events-none absolute bottom-[28px] inset-x-0 text-center text-[22px] leading-snug font-normal text-white sm:bottom-[32px] sm:text-2xl md:bottom-[36px] md:text-[34px] lg:bottom-[46px] lg:text-[44px]">
+        <p className="pointer-events-none absolute inset-x-0 bottom-[28px] text-center text-[22px] leading-snug font-normal text-white sm:bottom-[32px] sm:text-2xl md:bottom-[36px] md:text-[34px] lg:bottom-[46px] lg:text-[44px]">
           Assisting over 15,000 job seekers
           <br />
           <span className="text-white/60">find their dream positions.</span>

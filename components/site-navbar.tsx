@@ -15,10 +15,7 @@ const NAV_LINKS = [
   { label: "Pricing", href: "#" },
 ]
 
-function NavLink({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"a">) {
+function NavLink({ className, ...props }: React.ComponentPropsWithoutRef<"a">) {
   return (
     <a
       className={cn(
@@ -112,7 +109,7 @@ export function SiteNavbar() {
         {open && (
           <div
             id="site-mobile-nav"
-            className="animate-in fade-in slide-in-from-top-2 flex flex-col gap-1 border-t border-white/[0.06] px-4 pt-3 pb-4 duration-200 md:hidden"
+            className="flex animate-in flex-col gap-1 border-t border-white/[0.06] px-4 pt-3 pb-4 duration-200 fade-in slide-in-from-top-2 md:hidden"
           >
             {NAV_LINKS.map((link) => (
               <NavLink
