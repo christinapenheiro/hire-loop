@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
+import { authClient } from "@/app/lib/auth-client"
+import { useRouter } from "next/navigation"
 
 function Field({ className, ...props }: React.ComponentProps<"div">) {
   return <div className={cn("flex flex-col gap-1.5", className)} {...props} />
@@ -38,11 +40,29 @@ function GoogleButton({
 
 export function SignInForm() {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const router = useRouter()
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     // TODO: Wire auth functionality here (authClient.signIn.email({ email, password })).
     setIsSubmitting(true)
+   try { const formData = new FormData(event.currentTarget)
+    const user = Object.fromEntries((formData.entries()))
+    const { data, error } = await authClient.signIn.email({
+      email: user.email as string,
+      password: user.password as string,
+      rememberMe: true, 
+    })
+    if (error){
+      console.log(error)
+    } else {
+      console.log("Signed In Successfully")
+    }} catch (err){
+      console.log(err)
+    } finally {
+      setIsSubmitting(false)
+      router.push("/")
+    }
   }
 
   return (

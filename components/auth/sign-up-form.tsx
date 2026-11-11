@@ -11,18 +11,49 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
+import { authClient } from "@/app/lib/auth-client"
+import { useRouter } from "next/navigation"
 
 function Field({ className, ...props }: React.ComponentProps<"div">) {
   return <div className={cn("flex flex-col gap-1.5", className)} {...props} />
 }
 
+interface Form {
+  name?: string
+  email?: string
+  password?: string
+}
+
 export function SignUpForm() {
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // TODO: Wire auth functionality here (authClient.signUp.email({ name, email, password })).
     setIsSubmitting(true)
+    try {
+      const form = event.currentTarget
+      const formData = new FormData(form)
+      const user = Object.fromEntries(formData.entries()) as Form
+      // TODO: Wire auth functionality here (authClient.signUp.email({ name, email, password })).
+      const { data, error } = await authClient.signUp.email({
+        name: user.name as string,
+        email: user.email as string, 
+        password: user.password as string,
+      })
+
+      if (error) {
+        console.log(error)
+      } else {
+        console.log("Signed up Successfully.")
+      }
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setIsSubmitting(false);
+      router.push("/")
+    }
   }
 
   return (
