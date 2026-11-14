@@ -46,18 +46,20 @@ export function SignInForm() {
     event.preventDefault()
     // TODO: Wire auth functionality here (authClient.signIn.email({ email, password })).
     setIsSubmitting(true)
-   try { const formData = new FormData(event.currentTarget)
-    const user = Object.fromEntries((formData.entries()))
-    const { data, error } = await authClient.signIn.email({
-      email: user.email as string,
-      password: user.password as string,
-      rememberMe: true, 
-    })
-    if (error){
-      console.log(error)
-    } else {
-      console.log("Signed In Successfully")
-    }} catch (err){
+    try {
+      const formData = new FormData(event.currentTarget)
+      const user = Object.fromEntries(formData.entries())
+      const { data, error } = await authClient.signIn.email({
+        email: user.email as string,
+        password: user.password as string,
+        rememberMe: true,
+      })
+      if (error) {
+        console.log(error)
+      } else {
+        console.log("Signed In Successfully")
+      }
+    } catch (err) {
       console.log(err)
     } finally {
       setIsSubmitting(false)

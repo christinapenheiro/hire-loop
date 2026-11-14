@@ -73,8 +73,7 @@ function UserMenu({
     }
   }, [menuOpen])
 
-  const initial =
-    (sessionData.name ?? "").trim().charAt(0).toUpperCase() || "?"
+  const initial = (sessionData.name ?? "").trim().charAt(0).toUpperCase() || "?"
 
   const handleLogout = async () => {
     await authClient.signOut({
@@ -85,10 +84,6 @@ function UserMenu({
       },
     })
   }
-
-
-
-
 
   return (
     <div ref={menuRef} className={cn("relative", className)}>
@@ -144,9 +139,7 @@ function UserMenu({
 export function SiteNavbar() {
   const [open, setOpen] = React.useState(false)
   const { data: session } = authClient.useSession()
-  const sessionData = session?.user;
-
-
+  const sessionData = session?.user
 
   React.useEffect(() => {
     if (!open) return
@@ -156,12 +149,6 @@ export function SiteNavbar() {
     window.addEventListener("keydown", onKeyDown)
     return () => window.removeEventListener("keydown", onKeyDown)
   }, [open])
-
-
-
-
-
-
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4">
@@ -235,10 +222,7 @@ export function SiteNavbar() {
               </NavLink>
             ))}
             {sessionData ? (
-              <UserMenu
-                sessionData={sessionData}
-                className="mt-1 self-start"
-              />
+              <UserMenu sessionData={sessionData} className="mt-1 self-start" />
             ) : (
               <>
                 <NavLink
@@ -248,9 +232,7 @@ export function SiteNavbar() {
                 >
                   Sign In
                 </NavLink>
-                <GetStartedButton href="/sign-up">
-                  Get Started
-                </GetStartedButton>
+                <GetStartedButton href="/sign-up">Get Started</GetStartedButton>
               </>
             )}
           </div>
